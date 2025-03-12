@@ -82,4 +82,9 @@ public class PersonController {
         }
         return "redirect:/persons";
     }
+
+    @GetMapping("/home")
+    public String showHome() {
+        return "redirect:/";
+    }
 }
