@@ -13,6 +13,26 @@ target/
 .springBeans
 .sts4-cache
 
+# Игнорируем Docker-образы и тома
+**/target/
+**/build/
+**/node_modules/
+**/.docker/
+**/.idea/
+**/.vscode/
+
+# Игнорируем логи и временные файлы
+*.log
+*.tmp
+*.swp
+
+# Игнорируем Docker-тома
+**/db-data/
+**/postgres-data/
+
+# Игнорируем локальные конфигурации
+.env
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

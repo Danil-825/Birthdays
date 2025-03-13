@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:17  # Версия PostgreSQL
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres  # Имя пользователя
+      POSTGRES_PASSWORD: 54321  # Пароль
+      POSTGRES_DB: postgres  # Имя базы данных
+    ports:
+      - "5432:5432"  # Проброс порта
+    volumes:
+      - db-data:/var/lib/postgresql/data  # Сохранение данных базы
+
+  app:
+    image: my-spring-app  # Имя вашего Docker-образа
+    container_name: spring-app
+    ports:
+      - "8080:8080"  # Проброс порта для Spring-приложения
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 54321
+    depends_on:
+      - db  # Зависимость от сервиса базы данных
+
+volumes:
+  db-data:  # Том для хранения данных базы
